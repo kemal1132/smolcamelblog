@@ -15,20 +15,15 @@ const counterReducer = (state = 0, { type }) => {
   }
 }
 
-// INITIAL TIMER STATE
-const initialTimerState = {
-  lastUpdate: 0,
-  light: false,
-}
+
 
 // TIMER REDUCER
-const timerReducer = (state = initialTimerState, { type, payload }) => {
+const timerReducer = (state = 0, { type, payload }) => {
   switch (type) {
     case types.TICK:
-      return {
-        lastUpdate: payload.ts,
-        light: !!payload.light,
-      }
+      return state+1
+    case types.TIMER_RESET:
+      return state=0
     default:
       return state
   }

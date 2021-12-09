@@ -10,7 +10,7 @@ export const serverRenderClock = () => (dispatch) =>
 // INITIALIZES CLOCK ON CLIENT
 export const startClock = () => (dispatch) =>
   setInterval(() => {
-    dispatch({ type: types.TICK, payload: { light: true, ts: Date.now() } })
+    dispatch({ type: types.TICK })
   }, 1000)
 
 // INCREMENT COUNTER BY 1

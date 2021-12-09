@@ -5,11 +5,13 @@ const formatTime = (time) => {
 }
 
 const Clock = () => {
-  const lastUpdate = useSelector((state) => state.timer.lastUpdate)
-  const light = useSelector((state) => state.timer.light)
+  const secondsPassed = useSelector((state) => state.timer)
+  const minutesPassed = Math.floor(secondsPassed/60)
+  const hoursPassed = Math.floor(minutesPassed/60)
   return (
-    <div className={light ? 'light' : ''}>
-      {formatTime(lastUpdate)}
+    <div>
+      Time you wasted if you do not hire me: {(hoursPassed>0) ? hoursPassed+':':''}{(minutesPassed%60+':')}{(secondsPassed<10) ? '0'+secondsPassed%60:secondsPassed%60}
+      
       <style jsx>{`
         div {
           padding: 15px;
@@ -17,9 +19,6 @@ const Clock = () => {
           color: #82fa58;
           font: 50px menlo, monaco, monospace;
           background-color: #000;
-        }
-        .light {
-          background-color: #999;
         }
       `}</style>
     </div>
