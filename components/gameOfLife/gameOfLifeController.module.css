@@ -23,3 +23,7 @@
     grid-template-columns: 10rem calc(100vw - 10rem);
 }
 
+.input{
+    width: 90%;
+    margin: 3px 10px;
+}

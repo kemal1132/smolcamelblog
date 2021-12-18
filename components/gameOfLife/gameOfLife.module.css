@@ -1,7 +1,7 @@
 .grid {
     display:grid;
     background-color: grey;
-    width:150%;
+    width:100%;
 
 }
 .grid div {
@@ -16,5 +16,10 @@
 }
 
 .inactive{
-    background-color: none;
+    background-color: green;
+}
+
+.active{
+    background-color: blue;
+
 }
