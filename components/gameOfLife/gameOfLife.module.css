@@ -1,0 +1,12 @@
+.grid {
+    display:grid;
+    background-color: aqua;
+
+
+}
+.grid div {
+ 
+    display: inline-block;
+    border: 1px solid black;
+
+}
