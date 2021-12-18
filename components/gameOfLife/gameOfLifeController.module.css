@@ -1,0 +1,25 @@
+.controlPanel{
+    position: fixed;
+    height: 100vh;
+    width: 10rem;
+    background-color: rgba(122, 122, 122, 0.5);
+    top:0;
+    left:0;
+    margin:0;
+
+}
+
+.controlPanelPlaceHolder{
+    display:inline-block;
+    height: 100vh;
+    width: 10rem;
+    top:0;
+    left:0;
+    margin:0; 
+}
+
+.container{
+    display:grid;
+    grid-template-columns: 10rem calc(100vw - 10rem);
+}
+

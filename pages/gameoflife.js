@@ -1,4 +1,4 @@
-import GameOfLife from "../components/gameOfLife/gameOfLife";
+import GameOfLife from "../components/gameOfLife/gameOfLifeController";
 
 const gamePage = () => {
     return (<GameOfLife></GameOfLife>);
