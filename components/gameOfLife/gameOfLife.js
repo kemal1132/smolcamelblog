@@ -7,15 +7,30 @@ export default class GameOfLife extends React.Component {
         super(props);
         this.state = {
             grid: [],
-           
+            
         }
         this.refreshGrid = this.refreshGrid.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.refreshGrid();
         
     }
+
+    handleClick = (event) => {
+        let target= event.target.id.split("-");
+        let grid = this.state.grid;
+        console.log(event.target.className.toString().includes("inactive"));
+        if(event.target.className.toString().includes("inactive")){
+          grid[target[0]][target[1]] = <div id={target[0]+"-"+target[1]} onClick={this.handleClick} className={Style.active} position="test" key={target[0]+"-"+target[1]}></div>
+        }else{
+          grid[target[0]][target[1]] = <div id={target[0]+"-"+target[1]} onClick={this.handleClick} className={Style.inactive} position="test" key={target[0]+"-"+target[1]}></div>
+        }
+        this.setState({grid:grid});
+
+    }
+
     refreshGrid(){
-        //TD handling removal of cells when size is changed
+        //TD handling removal of cells when size is changed --Tick
         //TD handling click on cell
         //TD adding more control
         //TD adding game of life update logic
@@ -24,7 +39,8 @@ export default class GameOfLife extends React.Component {
           for(let height = 0; height < this.props.gridRowSize; height++){
             grid[height] = [];
             for(let length = 0; length < this.props.gridColumnSize; length++){
-              grid[height][length] = <div id={height.toString()+"-"+length.toString()} onClick={this.handleClick} className={Style.inactive} position="test" key={height.toString()+"-"+length.toString()+Style.inactive}></div>;
+                grid[height][length] = <div id={height.toString()+"-"+length.toString()} onClick={this.handleClick} className={Style.inactive} position="test" key={height.toString()+"-"+length.toString()+Style.inactive}></div>;
+              
             }
           }
           this.setState({grid:grid});
