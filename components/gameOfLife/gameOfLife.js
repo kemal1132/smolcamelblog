@@ -37,10 +37,13 @@ export default class GameOfLife extends React.Component {
           if(this.state.grid.length < this.props.gridRowSize||this.state.grid[0].length < this.props.gridColumnSize){
           let grid = this.state.grid;
           for(let height = 0; height < this.props.gridRowSize; height++){
-            grid[height] = [];
+            if(height>=this.state.grid.length){
+              grid[height] = [];   //Dont create a new array if it already exists
+            }
             for(let length = 0; length < this.props.gridColumnSize; length++){
-                grid[height][length] = <div id={height.toString()+"-"+length.toString()} onClick={this.handleClick} className={Style.inactive} position="test" key={height.toString()+"-"+length.toString()+Style.inactive}></div>;
-              
+                if(length>=grid[height].length||height>=this.state.grid.length){ //Dont reset the box if it already exists
+                  grid[height][length] = <div id={height.toString()+"-"+length.toString()} onClick={this.handleClick} className={Style.inactive} position="test" key={height.toString()+"-"+length.toString()+Style.inactive}></div>;
+                }
             }
           }
           this.setState({grid:grid});
