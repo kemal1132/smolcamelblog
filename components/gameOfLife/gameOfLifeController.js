@@ -34,11 +34,11 @@ export default class GameOfLifeController extends React.Component {
         <div>
           <div className={Style.container}>
             <div className={Style.controlPanel}>
-              <label>
+              <label className={Style.label}>
                 Grid amount of columns:
                 <input className={Style.input} type="number" value={this.state.gridColumnSize} onChange={this.handleGridColumnSizeChange}></input>
               </label>
-              <label>
+              <label className={Style.label}>
                 Grid amount of rows: 
                 <input className={Style.input} type="number" value={this.state.gridRowSize} onChange={this.handleGridRowSizeChange}></input>
               </label>
