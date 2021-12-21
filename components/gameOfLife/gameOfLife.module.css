@@ -1,6 +1,6 @@
 .grid {
     display:grid;
-    background-color: grey;
+    background-color: black;
     width:100%;
 
 }
@@ -19,14 +19,9 @@
 }
 
 .active {
-    background-color: blue;
-}
-
-.inactive{
     background-color: green;
 }
 
-.active{
-    background-color: blue;
-
+.inactive{
+    background-color: grey;
 }
