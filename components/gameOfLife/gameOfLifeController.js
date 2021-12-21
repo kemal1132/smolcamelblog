@@ -1,11 +1,15 @@
 //Game of Life
 import React from 'react';
+import {connect} from "react-redux";
+
 import GameOfLife from './gameOfLife';
 import Style from './gameOfLifeController.module.css';
+import {timer} from "../../redux/reducers/selectors";
 
 
 
-export default class GameOfLifeController extends React.Component {
+
+const gameOfLifeController = class GameOfLifeController extends React.Component {
     constructor(props){
         super(props);
         this.state ={gridColumnSize:4, gridRowSize:4};
@@ -29,6 +33,11 @@ export default class GameOfLifeController extends React.Component {
     }
 
     render() {
+      console.log(this.props);
+      
+      let secondsPassed = this.props.timer
+      let minutesPassed = Math.floor(secondsPassed/60)
+      let hoursPassed = Math.floor(minutesPassed/60)
       
       return (
         <div>
@@ -42,6 +51,10 @@ export default class GameOfLifeController extends React.Component {
                 Grid amount of rows: 
                 <input className={Style.input} type="number" value={this.state.gridRowSize} onChange={this.handleGridRowSizeChange}></input>
               </label>
+
+              Time you wasted if you do not hire me: {(hoursPassed>0) ? hoursPassed+':':''}{(minutesPassed%60+':')}{(secondsPassed<10) ? '0'+secondsPassed%60:secondsPassed%60}
+
+
             </div> 
             <div className={Style.controlPanelPlaceHolder}></div>
             <GameOfLife gridColumnSize={this.state.gridColumnSize} gridRowSize={this.state.gridRowSize}></GameOfLife>
@@ -51,3 +64,5 @@ export default class GameOfLifeController extends React.Component {
       );
     }
   }
+
+  export default connect(timer)(gameOfLifeController);
