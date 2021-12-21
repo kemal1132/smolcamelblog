@@ -47,7 +47,6 @@ export default class GameOfLife extends React.Component {
                 }
             }
           }
-          console.log("Calling setstate with grid: ", grid); 
           this.setState({grid:grid}, console.log(this.state));
           
         }
@@ -67,25 +66,18 @@ export default class GameOfLife extends React.Component {
       //styling the grid
 
       let dropzoneStyle = {
-        gridTemplateColumns: "repeat("+gridcolsize+", auto)",
-        gridTemplateRows: "repeat("+(this.props.gridRowSize-1)+", auto) 1fr",
+        gridTemplateColumns: "repeat("+gridcolsize+", 100px)",
+        gridTemplateRows: "repeat("+(this.props.gridRowSize-1)+", 100px) 1fr",
       }
       
       let grid = this.state.grid.slice(0, gridrowsize);
       for(let i=0; i<grid.length; i++){
         grid[i] = grid[i].slice(0, gridcolsize);
-      }
-      
-      for(let i=0; i<grid.length; i++){
         for(let j=0; j<grid[i].length; j++){
           grid[i][j] = <div id={i+"-"+j} key={i+"-"+j} className={grid[i][j].className} onClick={this.handleClick}></div>
         }
       }
       
-      
-        
-        
-   
       
       return (
         <React.Fragment>
