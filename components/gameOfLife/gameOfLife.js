@@ -1,6 +1,7 @@
 //Game of Life
 import React from 'react';
 import Style from "./gameOfLife.module.css";
+import cloneDeep from 'lodash.clonedeep';
 
 export default class GameOfLife extends React.Component {
     constructor(props){
@@ -12,14 +13,14 @@ export default class GameOfLife extends React.Component {
         this.refreshGrid = this.refreshGrid.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        this.refreshGrid();
+        //this.refreshGrid();
+        setTimeout(this.refreshGrid, 1); // I am really confused about why this set timeout is needed.
         
     }
 
     handleClick = (event) => {
         let target= event.target.id.split("-");
-        let grid = this.state.grid;
-        console.log(event.target.className.toString().includes("inactive"));
+        let grid = cloneDeep(this.state.grid);
         if(event.target.className.toString().includes("inactive")){
           grid[target[0]][target[1]] = <div id={target[0]+"-"+target[1]} onClick={this.handleClick} className={Style.active} position="test" key={target[0]+"-"+target[1]}></div>
         }else{
@@ -34,8 +35,8 @@ export default class GameOfLife extends React.Component {
         //TD handling click on cell
         //TD adding more control
         //TD adding game of life update logic
-          if(this.state.grid.length < this.props.gridRowSize||this.state.grid[0].length < this.props.gridColumnSize){
-          let grid = this.state.grid;
+        if(this.state.grid.length < this.props.gridRowSize||this.state.grid[0].length < this.props.gridColumnSize){
+          let grid = cloneDeep(this.state.grid);;
           for(let height = 0; height < this.props.gridRowSize; height++){
             if(height>=this.state.grid.length){
               grid[height] = [];   //Dont create a new array if it already exists
@@ -46,7 +47,9 @@ export default class GameOfLife extends React.Component {
                 }
             }
           }
-          this.setState({grid:grid});
+          console.log("Calling setstate with grid: ", grid); 
+          this.setState({grid:grid}, console.log(this.state));
+          
         }
     }
 
