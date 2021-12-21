@@ -13,8 +13,7 @@ export default class GameOfLife extends React.Component {
         this.refreshGrid = this.refreshGrid.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        //this.refreshGrid();
-        setTimeout(this.refreshGrid, 1); // I am really confused about why this set timeout is needed.
+       
         
     }
 
@@ -22,9 +21,9 @@ export default class GameOfLife extends React.Component {
         let target= event.target.id.split("-");
         let grid = cloneDeep(this.state.grid);
         if(event.target.className.toString().includes("inactive")){
-          grid[target[0]][target[1]] = <div id={target[0]+"-"+target[1]} onClick={this.handleClick} className={Style.active} position="test" key={target[0]+"-"+target[1]}></div>
+          grid[target[0]][target[1]] = <div id={target[0]+"-"+target[1]} onClick={this.handleClick} className={Style.active}  key={target[0]+"-"+target[1]}></div> //This is some code duplication, but I fail to see how it can be avoided. Efficiently
         }else{
-          grid[target[0]][target[1]] = <div id={target[0]+"-"+target[1]} onClick={this.handleClick} className={Style.inactive} position="test" key={target[0]+"-"+target[1]}></div>
+          grid[target[0]][target[1]] = <div id={target[0]+"-"+target[1]} onClick={this.handleClick} className={Style.inactive}  key={target[0]+"-"+target[1]}></div>
         }
         this.setState({grid:grid});
 
@@ -43,7 +42,7 @@ export default class GameOfLife extends React.Component {
             }
             for(let length = 0; length < this.props.gridColumnSize; length++){
                 if(length>=grid[height].length||height>=this.state.grid.length){ //Dont reset the box if it already exists
-                  grid[height][length] = <div id={height.toString()+"-"+length.toString()} onClick={this.handleClick} className={Style.inactive} position="test" key={height.toString()+"-"+length.toString()+Style.inactive}></div>;
+                  grid[height][length] = <div id={height.toString()+"-"+length.toString()} onClick={this.handleClick} className={Style.inactive} key={height.toString()+"-"+length.toString()+Style.inactive}></div>;
                 }
             }
           }
@@ -51,6 +50,9 @@ export default class GameOfLife extends React.Component {
           this.setState({grid:grid}, console.log(this.state));
           
         }
+    }
+    componentDidMount() {
+      this.refreshGrid();
     }
 
     componentDidUpdate(props){
