@@ -2,17 +2,11 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Link from "next/link";
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 
-import { startClock } from '../redux/Reducers/actions'
 import Examples from '../components/example'
 
 export default function Home() {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(startClock())
-  }, [dispatch])
+ 
 
 
 

@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux'
-import {useSelectTimer} from "../redux/reducers/selectors";
+import {timer} from "../redux/reducers/selectors";
 
 const formatTime = (time) => {
   return new Date(time).toJSON().slice(11, 19)
 }
 
 const Clock = () => {
-  const secondsPassed = useSelector(useSelectTimer)
+  const secondsPassed = useSelector(timer).timer
   const minutesPassed = Math.floor(secondsPassed/60)
   const hoursPassed = Math.floor(minutesPassed/60)
   return (
