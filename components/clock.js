@@ -9,7 +9,7 @@ const Clock = () => {
   const hoursPassed = Math.floor(minutesPassed/60)
   return (
     <div>
-      Time you wasted if you do not hire me: {(hoursPassed>0) ? hoursPassed+':':''}{(minutesPassed%60+':')}{(secondsPassed<10) ? '0'+secondsPassed%60:secondsPassed%60}
+      Time you wasted if you do not hire me: {(hoursPassed>0) ? hoursPassed+':':''}{(minutesPassed%60+':')}{(secondsPassed%60<10) ? '0'+secondsPassed%60:secondsPassed%60}
       
       <style jsx>{`
         div {

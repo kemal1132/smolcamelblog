@@ -67,7 +67,7 @@ export default class GameOfLife extends React.Component {
 
       let dropzoneStyle = {
         gridTemplateColumns: "repeat("+gridcolsize+", 100px)",
-        gridTemplateRows: "repeat("+(this.props.gridRowSize-1)+", 100px) 1fr",
+        gridTemplateRows: "repeat("+(gridrowsize-1)+", 100px) 1fr",
       }
       
       let grid = this.state.grid.slice(0, gridrowsize);

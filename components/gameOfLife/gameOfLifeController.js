@@ -51,8 +51,10 @@ const gameOfLifeController = class GameOfLifeController extends React.Component 
                 Grid amount of rows: 
                 <input className={Style.input} type="number" value={this.state.gridRowSize} onChange={this.handleGridRowSizeChange}></input>
               </label>
-
-              Time you wasted if you do not hire me: {(hoursPassed>0) ? hoursPassed+':':''}{(minutesPassed%60+':')}{(secondsPassed<10) ? '0'+secondsPassed%60:secondsPassed%60}
+              <label className={Style.label}>
+                Time you wasted if you do not hire me: {(hoursPassed>0) ? hoursPassed+':':''}{(minutesPassed%60+':')}{(secondsPassed%60<10) ? '0'+secondsPassed%60:secondsPassed%60}
+              </label>
+              
 
 
             </div> 
